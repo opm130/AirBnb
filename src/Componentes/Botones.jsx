@@ -1,3 +1,3 @@
-export default function Boton({texto}){
-    return <input type="button" value={texto} />
+export default function Boton({texto,typo}){
+    return <button type={typo}>{texto}</button>
 }

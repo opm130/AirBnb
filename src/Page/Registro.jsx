@@ -1,44 +1,29 @@
-import Logo from "../Componentes/Logo"
-import Titulos from "../Componentes/Titulos"
-import Campos from "../Componentes/Campos"
-import Boton from "../Componentes/Botones"
+import Formulario from "../Orquestador/Formulario"
+import { useFormulario } from "../Hook/UseFormulario"
 const campos=[
     {text:"Nombre",name:"Nombre",typo:"text"},
     {text:"Apellido",name:"Apell",typo:"text"},
     {text:"Usuario",name:"User",typo:"text"},
     {text:"Contraseña",name:"Pass",typo:"password"},
-    {text:"Telefono",name:"Tel",typo:"text"}
-]
-const palabra=[
-    "Registrese como usuario"
+    {text:"Telefono",name:"Tel",typo:"text"},
+    {text:"#Documento",name:"Doc",typo:"text"},
 ]
 const boton=[
-    "Registrese","Inicio"
+    {texto:"Registrese",typo:"submit"},
+    {texto:"Inicio",typo:"button"},
+    
 ]
 export default function Registro(){
+    const {formData,handleChange,handleSubmit}=useFormulario(campos)
     return(
-        <div>
-            <img src={Logo} alt="" />
-            <Titulos
-                key={palabra}
-                palabra={palabra}
-            />
-            <form action="">
-                {campos.map((camp)=>(
-                    <Campos
-                        key={camp.name}
-                        text={camp.text}
-                        name={camp.name}
-                        typo={camp.typo}
-                    />
-                ))}
-                {boton.map((btn)=>(
-                    <Boton
-                        key={btn}
-                        texto={btn}
-                    />
-                ))}
-            </form>
-        </div>
+        <Formulario
+        key={campos}
+        palabra="Registrese como usuario"
+        boton={boton}
+        campos={campos}
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        />
     )
 }
